@@ -1,14 +1,14 @@
-# React + Vite + Vercel
+# PerfectResume.ai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# perfectresume.ai-frontend
-
+PerfectResume.ai is a web application that will empowers users to create, enhance, and review
+resumes using AI-driven features. offers tools for resume building with pre-generated ATS friendly resume Template crafted by industry experts, customize content generation based on job description.
 
 # Steps to run
- - npm install
- - npm run dev
+- `git clone git@github.com:pesto-students/front-end-repo-binarywizards.git`
+- `cd front-end-repo-binarywizards`
+
+### Install Dependencies and Run
+- `npm install`
+- `npm run dev`
+
+- open http://localhost:5173

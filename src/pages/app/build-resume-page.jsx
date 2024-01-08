@@ -267,159 +267,162 @@ const BuildResume = () => {
   }
 
   return (
-    <div className="h-full flex flex-col px-10 py-4 pt-8">
-      <div data-component="create-resume-form">
-        <CreateResumeForm
-          openModal={openCreateResumeForm}
-          setOpenModal={setOpenCreateResumeForm}
-        />
-      </div>
-      <div data-component="crop-tool">
-        <CropTool
-          imageObj={uploadImageSrc}
-          openModal={openCropTool}
-          setOpenModal={cancelCrop}
-          onSaveCrop={onSaveCrop}
-        />
-      </div>
-      <div className="flex justify-center mb-10">
-        {resumeData ? (
-          <h1 className="text-2xl text-gray-800 font-semibold uppercase underline">
-            {resumeData.name}
-          </h1>
-        ) : (
-          <h1 className="text-2xl text-gray-800 font-semibold capitalize">
-            Create New Resume
-          </h1>
-        )}
-      </div>
-      <div className="flex-1 flex justify-center gap-x-[5%]">
-        <div className="flex flex-col items-start justify-start max-w-[600px] w-full h-auto mb-8">
-          <div data-title="header" className="w-full mb-4">
-            <div className="w-full flex justify-between items-center">
-              <div>
-                <h1 className="text-base text-primary font-medium">
-                  Block Editor
-                </h1>
-              </div>
-              <div>
-                {isLoading ? (
-                  <div>
-                    <Skeleton width={110} height={36} />
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center">
-                    <Tippy
-                      content="Please ensure you update your AI configuration to align with the job title and description you're targeting."
-                      theme={"light"}
-                    >
-                      <div className="me-2 text-gray-400 cursor-pointer">
-                        <InfoIcon />
-                      </div>
-                    </Tippy>
-
-                    <div className=" relative">
-                      {!config.jobDescription ? (
-                        <div className="absolute -left-1 -top-1">
-                          <span className="relative flex h-3 w-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                          </span>
-                        </div>
-                      ) : null}
-
-                      <button
-                        type="button"
-                        className="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-accent rounded-lg hover:bg-accent-900 focus:ring-4 focus:outline-none focus:ring-accent-300"
-                        onClick={() => setOpenAiConfigForm((toggle) => !toggle)}
-                      >
-                        <span className="me-2">
-                          <GearIcon />
-                        </span>
-                        Configure AI
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <OpenAiConfigForm
-                openModal={openAiConfigForm}
-                setOpenModal={setOpenAiConfigForm}
-              />
-            </div>
-          </div>
-          {section ? (
-            <div className="w-full relative shadow-[0_6px_15px_#00000029] rounded border-t border-solid border-[#f3f3f3]">
-              <div className="absolute right-0 top-0">
-                <button
-                  onClick={() => onSelectedSection("")}
-                  className="bg-gray-200 hover:bg-gray-300 font-semibold m-1 p-1.5"
-                >
-                  <TimesIcon />
-                </button>
-              </div>
-              <TemplateForm
-                section={section}
-                formSchema={templateData.formSchema[section]}
-                data={metaData[section]}
-                onChange={onChange}
-                onDelete={onDelete}
-              />
-              <div className="absolute bottom-2 flex justify-center items-center w-full bg-transparent">
-                <button
-                  onClick={() => onSelectedSection("")}
-                  className="text-sm text-accent-800 bg-white hover:text-accent font-semibold m-1 px-3 py-2 border border-gray-200 rounded-md"
-                >
-                  Discard
-                </button>
-              </div>
-            </div>
+    <>
+      <div className="h-full hidden flex-col px-10 py-4 pt-8 min-[900px]:flex">
+        <div data-component="create-resume-form">
+          <CreateResumeForm
+            openModal={openCreateResumeForm}
+            setOpenModal={setOpenCreateResumeForm}
+          />
+        </div>
+        <div data-component="crop-tool">
+          <CropTool
+            imageObj={uploadImageSrc}
+            openModal={openCropTool}
+            setOpenModal={cancelCrop}
+            onSaveCrop={onSaveCrop}
+          />
+        </div>
+        <div className="flex justify-center mb-10">
+          {resumeData ? (
+            <h1 className="text-2xl text-gray-800 font-semibold uppercase underline">
+              {resumeData.name}
+            </h1>
           ) : (
-            <div className=" w-full h-96 p-8 flex justify-center items-center rounded border-2 border-dashed border-gray-300">
-              <h1 className="text-2xl font-semibold text-gray-400 text-center">
-                Click edit button of any <br /> block in the template
-              </h1>
-            </div>
+            <h1 className="text-2xl text-gray-800 font-semibold capitalize">
+              Create New Resume
+            </h1>
           )}
         </div>
-        <div className="flex flex-col items-center justify-start max-w-[600px] w-full h-full mb-8">
-          <div data-title="header" className="w-full mb-4">
-            <div className="w-full flex justify-between items-center">
-              <div>
-                <h1 className="text-base text-primary font-medium">
-                  Template View
+        <div className="flex-1 flex justify-center gap-x-[5%]">
+          <div className="flex flex-col items-start justify-start max-w-[600px] w-full h-auto mb-8">
+            <div data-title="header" className="w-full mb-4">
+              <div className="w-full flex justify-between items-center">
+                <div>
+                  <h1 className="text-base text-primary font-medium">
+                    Block Editor
+                  </h1>
+                </div>
+                <div>
+                  {isLoading ? (
+                    <div>
+                      <Skeleton width={110} height={36} />
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center">
+                      <Tippy
+                        content="Please ensure you update your AI configuration to align with the job title and description you're targeting."
+                        theme={"light"}
+                      >
+                        <div className="me-2 text-gray-400 cursor-pointer">
+                          <InfoIcon />
+                        </div>
+                      </Tippy>
+
+                      <div className=" relative">
+                        {!config.jobDescription ? (
+                          <div className="absolute -left-1 -top-1">
+                            <span className="relative flex h-3 w-3">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                            </span>
+                          </div>
+                        ) : null}
+
+                        <button
+                          type="button"
+                          className="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-accent rounded-lg hover:bg-accent-900 focus:ring-4 focus:outline-none focus:ring-accent-300"
+                          onClick={() =>
+                            setOpenAiConfigForm((toggle) => !toggle)
+                          }
+                        >
+                          <span className="me-2">
+                            <GearIcon />
+                          </span>
+                          Configure AI
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <OpenAiConfigForm
+                  openModal={openAiConfigForm}
+                  setOpenModal={setOpenAiConfigForm}
+                />
+              </div>
+            </div>
+            {section ? (
+              <div className="w-full relative shadow-[0_6px_15px_#00000029] rounded border-t border-solid border-[#f3f3f3]">
+                <div className="absolute right-0 top-0">
+                  <button
+                    onClick={() => onSelectedSection("")}
+                    className="bg-gray-200 hover:bg-gray-300 font-semibold m-1 p-1.5"
+                  >
+                    <TimesIcon />
+                  </button>
+                </div>
+                <TemplateForm
+                  section={section}
+                  formSchema={templateData.formSchema[section]}
+                  data={metaData[section]}
+                  onChange={onChange}
+                  onDelete={onDelete}
+                />
+                <div className="absolute bottom-2 flex justify-center items-center w-full bg-transparent">
+                  <button
+                    onClick={() => onSelectedSection("")}
+                    className="text-sm text-accent-800 bg-white hover:text-accent font-semibold m-1 px-3 py-2 border border-gray-200 rounded-md"
+                  >
+                    Discard
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className=" w-full h-96 p-8 flex justify-center items-center rounded border-2 border-dashed border-gray-300">
+                <h1 className="text-2xl font-semibold text-gray-400 text-center">
+                  Click edit button of any <br /> block in the template
                 </h1>
               </div>
-              {isLoading ? (
+            )}
+          </div>
+          <div className="flex flex-col items-center justify-start max-w-[600px] w-full h-full mb-8">
+            <div data-title="header" className="w-full mb-4">
+              <div className="w-full flex justify-between items-center">
                 <div>
-                  <Skeleton width={200} height={32} />
+                  <h1 className="text-base text-primary font-medium">
+                    Template View
+                  </h1>
                 </div>
-              ) : (
-                <div className="flex items-center">
-                  <button
-                    type="button"
-                    className="px-3 py-1.5 ml-2 text-xs font-semibold text-center uppercase inline-flex items-center text-gray-800 bg-white rounded-md border-2 border-gray-300  hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-accent-300"
-                    onClick={() => resetMetaData()}
-                  >
-                    Reset
-                  </button>
-                  <button
-                    type="button"
-                    className="px-3 py-1.5 ml-2 text-xs font-semibold text-center uppercase inline-flex items-center text-white bg-accent rounded-md border-2 border-accent  hover:bg-accent-900 hover:border-accent-900 focus:ring-4 focus:outline-none focus:ring-accent-300"
-                    onClick={() => onSaveResume()}
-                  >
-                    {isUpdateMode ? "Update" : "Create"}
-                  </button>
-                  <Tippy content="Download Resume">
+                {isLoading ? (
+                  <div>
+                    <Skeleton width={200} height={32} />
+                  </div>
+                ) : (
+                  <div className="flex items-center">
                     <button
                       type="button"
-                      className="px-1.5 py-1.5 ml-2 text-xs font-medium text-center inline-flex items-center text-white bg-accent rounded-md hover:bg-accent-900 focus:ring-4 focus:outline-none focus:ring-accent-300"
-                      onClick={() => downloadResume()}
+                      className="px-3 py-1.5 ml-2 text-xs font-semibold text-center uppercase inline-flex items-center text-gray-800 bg-white rounded-md border-2 border-gray-300  hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-accent-300"
+                      onClick={() => resetMetaData()}
                     >
-                      <DownloadIcon />
+                      Reset
                     </button>
-                  </Tippy>
-                  {/* <Tippy content="Share your Resume">
+                    <button
+                      type="button"
+                      className="px-3 py-1.5 ml-2 text-xs font-semibold text-center uppercase inline-flex items-center text-white bg-accent rounded-md border-2 border-accent  hover:bg-accent-900 hover:border-accent-900 focus:ring-4 focus:outline-none focus:ring-accent-300"
+                      onClick={() => onSaveResume()}
+                    >
+                      {isUpdateMode ? "Update" : "Create"}
+                    </button>
+                    <Tippy content="Download Resume">
+                      <button
+                        type="button"
+                        className="px-1.5 py-1.5 ml-2 text-xs font-medium text-center inline-flex items-center text-white bg-accent rounded-md hover:bg-accent-900 focus:ring-4 focus:outline-none focus:ring-accent-300"
+                        onClick={() => downloadResume()}
+                      >
+                        <DownloadIcon />
+                      </button>
+                    </Tippy>
+                    {/* <Tippy content="Share your Resume">
                     <button
                       type="button"
                       className="px-1.5 py-1.5 ml-2 text-xs font-medium text-center inline-flex items-center text-white bg-accent rounded-md hover:bg-accent-900 focus:ring-4 focus:outline-none focus:ring-accent-300"
@@ -427,31 +430,37 @@ const BuildResume = () => {
                       <ShareIcon />
                     </button>
                   </Tippy> */}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className=" w-full shadow-[0_6px_15px_#00000029] p-1 rounded border-t border-solid border-[#f3f3f3]">
+              {isLoading ? (
+                <div>
+                  <Skeleton
+                    className="w-[350px] lg:w-[400px] xl:w-[592px]"
+                    height={840}
+                  />
                 </div>
+              ) : (
+                <Template
+                  json={templateData.template}
+                  data={metaData}
+                  onSelectedSection={onSelectedSection}
+                  onSelectFile={onSelectFile}
+                />
               )}
             </div>
           </div>
-          <div className=" w-full shadow-[0_6px_15px_#00000029] p-1 rounded border-t border-solid border-[#f3f3f3]">
-            {isLoading ? (
-              <div>
-                <Skeleton
-                  className="w-[350px] lg:w-[400px] xl:w-[592px]"
-                  height={840}
-                />
-              </div>
-            ) : (
-              <Template
-                json={templateData.template}
-                data={metaData}
-                onSelectedSection={onSelectedSection}
-                onSelectFile={onSelectFile}
-              />
-            )}
-          </div>
         </div>
+        <div className="w-full h-[300px] bg-transparent"></div>
       </div>
-      <div className="w-full h-[300px] bg-transparent"></div>
-    </div>
+      <div className="h-full flex flex-col justify-center items-center px-10 py-4 pt-8 min-[900px]:hidden">
+        <h1 className="text-2xl font-semibold text-primary">
+          Builder View currently works only on Desktop view
+        </h1>
+      </div>
+    </>
   );
 };
 
