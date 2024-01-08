@@ -11,4 +11,4 @@ resumes using AI-driven features. offers tools for resume building with pre-gene
 - `npm install`
 - `npm run dev`
 
-- open http://localhost:5173/
+- open http://localhost:5173
