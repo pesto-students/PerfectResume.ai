@@ -5,6 +5,7 @@ const initialState = {
   template: {},
   resume: {},
   metaData: {},
+  isTextApplied: false,
 };
 
 export const builderSlice = createSlice({
@@ -24,10 +25,21 @@ export const builderSlice = createSlice({
       const { metaData } = action.payload;
       state.metaData = metaData;
     },
+    updateMetaDataSection: (state, action) => {
+      const { section, data, isTextApplied } = action.payload;
+      state.metaData[section] = data;
+      if (isTextApplied) {
+        state.isTextApplied = !state.isTextApplied;
+      }
+    },
   },
 });
 
-export const { setTemplateData, setResumeData, updateResumeMetaData } =
-  builderSlice.actions;
+export const {
+  setTemplateData,
+  setResumeData,
+  updateResumeMetaData,
+  updateMetaDataSection,
+} = builderSlice.actions;
 const builderReducer = builderSlice.reducer;
 export default builderReducer;
