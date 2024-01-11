@@ -9,7 +9,7 @@ import { isArray } from "src/utils/utils";
 
 const isProduction = import.meta.env.PROD;
 const prod = import.meta.env.VITE_API;
-const dev = "http://localhost:3000";
+const dev = import.meta.env.VITE_API_DEV;
 
 const backend = isProduction ? prod : dev;
 

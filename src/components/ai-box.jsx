@@ -3,7 +3,7 @@ import StarsIcon from "src/assets/icons/stars.svg?react";
 import Tippy from "@tippyjs/react/headless";
 import { rephrase } from "src/api-service/openai/openai-service";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BotIcon from "src/assets/icons/bot.svg?react";
 import Copy from "src/assets/icons/copy.svg?react";
 import ArrowRight from "src/assets/icons/arrow-right.svg?react";
@@ -12,8 +12,16 @@ import SpinnerIcon from "src/assets/icons/spinner.svg?react";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { updateMetaDataSection } from "src/store/builderSlice";
 
-const AiRephraseBox = ({ field, data, rephraseCacheId }) => {
+const AiRephraseBox = ({
+  metaData,
+  activeSection,
+  field,
+  data,
+  rephraseCacheId,
+  onApplyText,
+}) => {
   const { config } = useSelector((state) => state.openAiState);
   const [phrases, setPhrases] = useState([]);
   const [userInteracting, setUserInteracting] = useState(false);
@@ -22,6 +30,7 @@ const AiRephraseBox = ({ field, data, rephraseCacheId }) => {
   const [currentContext, setCurrentContext] = useState("");
   const [isReqPending, setIsReqPending] = useState(false);
   const scrollableRef = useRef(null);
+  const dispatch = useDispatch();
 
   // Query for fetching phrases
   const fetchPhrases = async () => {
@@ -75,8 +84,8 @@ const AiRephraseBox = ({ field, data, rephraseCacheId }) => {
     }
   };
 
-  const applyText = (text) => {
-    // TODO
+  const applyText = (value) => {
+    onApplyText({ field, value });
   };
 
   const copyText = (text) => {
@@ -92,6 +101,7 @@ const AiRephraseBox = ({ field, data, rephraseCacheId }) => {
           position: toast.POSITION.TOP_CENTER,
         });
       });
+    const data = metaData[activeSection];
   };
 
   const toggleRephraseBox = () => {
@@ -194,13 +204,16 @@ const AiRephraseBox = ({ field, data, rephraseCacheId }) => {
                             </p>
                             <div className="invisible group-hover:visible">
                               <button
-                                className="hidden p-2 ms-2 mb-2 text-gray-400 shadow-sm bg-gray-100 rounded   hover:text-gray-600 hover:bg-gray-200"
+                                className={`p-2 ms-2 text-gray-400 shadow-md
+                                rounded   hover:text-gray-600 hover:bg-gray-200 ${
+                                  phrase.system ? "bg-gray-100" : "bg-gray-50 "
+                                }`}
                                 onClick={() => applyText(phrase.text)}
                               >
                                 <ArrowStackUp className="w-4 h-4" />
                               </button>
                               <button
-                                className={`p-2 ms-2 text-gray-400 shadow-md
+                                className={`hidden p-2 ms-2 text-gray-400 shadow-md
                                   rounded   hover:text-gray-600 hover:bg-gray-200 ${
                                     phrase.system
                                       ? "bg-gray-100"
@@ -279,9 +292,12 @@ const AiRephraseBox = ({ field, data, rephraseCacheId }) => {
 };
 
 AiRephraseBox.propTypes = {
+  metaData: PropTypes.object,
+  activeSection: PropTypes.string,
   field: PropTypes.string,
   data: PropTypes.string,
   rephraseCacheId: PropTypes.string,
+  onApplyText: PropTypes.func,
 };
 
 export default AiRephraseBox;
