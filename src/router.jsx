@@ -20,6 +20,7 @@ import UserProfilePage from "./pages/app/user-profile-page";
 import Skeleton from "react-loading-skeleton";
 import ResetPasswordPage from "./pages/reset-password-page";
 import CreateTemplatePage from "./pages/app/create-template-page";
+import TemplateBuilderPage from "./pages/app/template-builder-page";
 
 const PublicRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -138,6 +139,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CreateTemplatePage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "template-builder",
+        element: (
+          <PrivateRoute>
+            <TemplateBuilderPage />
           </PrivateRoute>
         ),
       },
