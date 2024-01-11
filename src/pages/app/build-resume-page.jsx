@@ -253,7 +253,7 @@ const BuildResume = () => {
 
   return (
     <>
-      <div className="h-full hidden flex-col px-10 py-4 pt-8 min-[900px]:flex">
+      <div className="h-full overflow-auto hidden flex-col px-10 py-4 pt-8 min-[900px]:flex">
         <div data-component="create-resume-form">
           <CreateResumeForm
             openModal={openCreateResumeForm}

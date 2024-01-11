@@ -1,7 +1,7 @@
 const TreeView = () => {
   return (
-    <div className="bg-white">
-      <h1 className="text-base font-bold">Drag & Drop Area</h1>
+    <div className="bg-gray-300">
+      <h1 className="text-base font-bold">Tree view</h1>
     </div>
   );
 };
