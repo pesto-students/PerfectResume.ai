@@ -14,12 +14,12 @@ import useAuth from "./hooks/useAuth";
 import MainLayout from "./layouts/main-layout";
 import BuildResume from "./pages/app/build-resume-page";
 import ReviewSystem from "./pages/app/review-system-page";
-import CreateTemplate from "./pages/app/create-template";
 import TemplatesPage from "./pages/app/templates-page";
 import ErrorPage from "./pages/error-page";
 import UserProfilePage from "./pages/app/user-profile-page";
 import Skeleton from "react-loading-skeleton";
 import ResetPasswordPage from "./pages/reset-password-page";
+import CreateTemplatePage from "./pages/app/create-template-page";
 
 const PublicRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -137,7 +137,7 @@ const router = createBrowserRouter([
         path: "create-template",
         element: (
           <PrivateRoute>
-            <CreateTemplate />
+            <CreateTemplatePage />
           </PrivateRoute>
         ),
       },
