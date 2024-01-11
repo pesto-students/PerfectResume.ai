@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useRef } from "react";
 import { debounce, isArray } from "src/utils/utils";
 import TextArea from "./form/text-area";
@@ -6,19 +5,57 @@ import InputField from "./form/input-field";
 import { v4 as uuidv4 } from "uuid";
 
 import AiRephraseBox from "./ai-box";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveSection } from "src/store/editorSlice";
+import TimesIcon from "src/assets/icons/times.svg?react";
+import {
+  updateMetaDataSection,
+  updateResumeMetaData,
+} from "src/store/builderSlice";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useMemo } from "react";
 
-const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
+const TemplateForm = () => {
+  const { activeSection } = useSelector((state) => state.editorState);
+  const {
+    template: templateData,
+    metaData,
+    isTextApplied,
+  } = useSelector((state) => state.builderState);
+  const [formSchema, setFormSchema] = useState(null);
+  const dispatch = useDispatch();
   const formRef = useRef();
+  const resetKey = useMemo(() => Date.now(), [isTextApplied]);
+
+  const updateMetaData = (newMetaData) => {
+    const updatedMetaData = { ...metaData, ...newMetaData };
+    dispatch(updateResumeMetaData({ metaData: updatedMetaData }));
+  };
+
+  const onApplyText = ({ field, value }) => {
+    dispatch(
+      updateMetaDataSection({
+        section: activeSection,
+        data: { ...metaData[activeSection], [field]: value },
+        isTextApplied: true,
+      }),
+    );
+  };
+  const onFormClose = () => {
+    dispatch(setActiveSection({ activeSection: "" }));
+  };
 
   const onFormChange = () => {
     debounceUpdateFormData();
   };
 
   const deleteBlock = (blockId) => {
+    const data = metaData[activeSection];
     if (isArray(data)) {
       let newData = data.filter((item) => item.order !== blockId);
-      let finalData = { [section]: newData };
-      onDelete(finalData);
+      let finalData = { [activeSection]: newData };
+      updateMetaData(finalData);
     }
   };
 
@@ -51,7 +88,7 @@ const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
         tempData.push({ [actualKey]: value, order: parseInt(order) });
       }
       let newData = mergeItemsByOrder(tempData);
-      finalData[section] = newData;
+      finalData[activeSection] = newData;
     }
     if (formSchema.fieldType.repeatable && !formSchema.fieldType.isBlock) {
       const newFormData = new FormData(formRef.current);
@@ -62,10 +99,11 @@ const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
         value = value ? value.replace(/[{}]/g, "") : "";
         newData.push({ [actualKey]: value, order: parseInt(order) });
       }
-      finalData[section] = newData;
+      finalData[activeSection] = newData;
     }
     if (!formSchema.fieldType.repeatable) {
       let newData = {};
+      const data = metaData[activeSection];
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
           let value = formData[key].value;
@@ -74,11 +112,11 @@ const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
         }
       }
 
-      finalData[section] = { ...data, ...newData };
+      finalData[activeSection] = { ...data, ...newData };
     }
 
-    // console.log("newData: ", finalData[section]);
-    onChange(finalData);
+    // console.log("newData: ", finalData[activeSection]);
+    updateMetaData(finalData);
   };
 
   const generateNewBlock = (formSchema, order) => {
@@ -88,11 +126,13 @@ const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
       return acc;
     }, {});
     newBlock["order"] = order + 1;
-    const finalData = { [section]: [...data, newBlock] };
-    onChange(finalData);
+    const data = metaData[activeSection];
+    const finalData = { [activeSection]: [...data, newBlock] };
+    updateMetaData(finalData);
   };
 
-  const generateForm = (formSchema, data) => {
+  const generateForm = (formSchema, metaData) => {
+    const data = metaData[activeSection];
     if (formSchema.fieldType.repeatable && isArray(data)) {
       let formFields = [];
       data.forEach((item) => {
@@ -116,9 +156,12 @@ const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
                   {fieldData.includeAi ? (
                     <div className="absolute right-0 bottom-[9px]  z-50">
                       <AiRephraseBox
+                        metaData={metaData}
+                        activeSection={activeSection}
                         field={fieldData.key}
                         data={item[fieldData.key]}
                         rephraseCacheId={uuidv4()}
+                        onApplyText={onApplyText}
                       />
                     </div>
                   ) : null}
@@ -184,9 +227,12 @@ const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
                 {fieldData.includeAi ? (
                   <div className="absolute right-0 bottom-[9px]  z-50">
                     <AiRephraseBox
+                      metaData={metaData}
+                      activeSection={activeSection}
                       field={fieldData.key}
                       data={data[fieldData.key]}
                       rephraseCacheId={uuidv4()}
+                      onApplyText={onApplyText}
                     />
                   </div>
                 ) : null}
@@ -201,29 +247,50 @@ const TemplateForm = ({ formSchema, data, onChange, onDelete, section }) => {
   };
   const debounceUpdateFormData = debounce(updateFormData, 400);
 
+  useEffect(() => {
+    if (activeSection) {
+      setFormSchema(templateData.formSchema[activeSection]);
+    } else {
+      setFormSchema(null);
+    }
+  }, [activeSection]);
+
   return (
-    <div className="max-h-[840px] p-8 overflow-auto mb-10 custom-scrollbar">
-      {/* <Loader openModal={isLoading} setOpenModal={setIsLoading} /> */}
-      <form onChange={onFormChange} ref={formRef}>
-        {generateForm(formSchema, data)}
-      </form>
-    </div>
+    <>
+      {!(activeSection && formSchema) ? (
+        <div className=" w-full h-96 p-8 flex justify-center items-center rounded border-2 border-dashed border-gray-300">
+          <h1 className="text-2xl font-semibold text-gray-400 text-center">
+            Click edit button of any <br /> block in the template
+          </h1>
+        </div>
+      ) : (
+        <div className="w-full relative shadow-[0_6px_15px_#00000029] rounded border-t border-solid border-[#f3f3f3]">
+          <div className="absolute right-0 top-0">
+            <button
+              onClick={() => onFormClose()}
+              className="bg-gray-200 hover:bg-gray-300 font-semibold m-1 p-1.5"
+            >
+              <TimesIcon />
+            </button>
+          </div>
+          <div className="max-h-[840px] p-8 overflow-auto mb-10 custom-scrollbar">
+            {/* <Loader openModal={isLoading} setOpenModal={setIsLoading} /> */}
+            <form key={resetKey} onChange={onFormChange} ref={formRef}>
+              {generateForm(formSchema, metaData)}
+            </form>
+          </div>
+          <div className="absolute bottom-2 flex justify-center items-center w-full bg-transparent">
+            <button
+              onClick={() => onFormClose("")}
+              className="text-sm text-accent-800 bg-white hover:text-accent font-semibold m-1 px-3 py-2 border border-gray-200 rounded-md"
+            >
+              Discard
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
-};
-TemplateForm.propTypes = {
-  section: PropTypes.string,
-  formSchema: PropTypes.shape({
-    fieldType: PropTypes.shape({
-      repeatable: PropTypes.bool,
-      isBlock: PropTypes.bool,
-      max: PropTypes.number,
-      includeAi: PropTypes.bool,
-    }),
-    schema: PropTypes.arrayOf(PropTypes.object),
-  }),
-  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  onChange: PropTypes.func,
-  onDelete: PropTypes.func,
 };
 
 export default TemplateForm;

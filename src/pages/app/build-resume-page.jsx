@@ -11,7 +11,6 @@ import GearIcon from "src/assets/icons/gear.svg?react";
 import InfoIcon from "src/assets/icons/info.svg?react";
 import DownloadIcon from "src/assets/icons/download.svg?react";
 import ShareIcon from "src/assets/icons/share.svg?react";
-import TimesIcon from "src/assets/icons/times.svg?react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { initFlowbite } from "flowbite";
@@ -32,17 +31,15 @@ import CropTool from "src/components/crop-tool";
 import { uploadPhoto } from "src/api-service/upload/upload-service";
 import { useContext } from "react";
 import { LoaderContext } from "src/contexts/loader-context";
+import { setActiveSection } from "src/store/editorSlice";
 
 const BuildResume = () => {
   const { action, templateId, resumeId } = useParams();
-  const {
-    template,
-    resume,
-    metaData: finalMetaData,
-  } = useSelector((state) => state.builderState);
+  const { template, resume, metaData } = useSelector(
+    (state) => state.builderState,
+  );
   const { config } = useSelector((state) => state.openAiState);
-  const [metaData, setMetaData] = useState({});
-  const [section, setSection] = useState("");
+  // const [metaData, setMetaData] = useState(finalMetaData);
   const [openCreateResumeForm, setOpenCreateResumeForm] = useState(false);
   const [openCropTool, setOpenCropTool] = useState(false);
   const [uploadImageSrc, setUploadImageSrc] = useState({});
@@ -98,7 +95,7 @@ const BuildResume = () => {
 
   const updateMetaData = (newMetaData) => {
     const updatedMetaData = { ...metaData, ...newMetaData };
-    setMetaData(updatedMetaData);
+    // setMetaData(updatedMetaData);
     dispatch(updateResumeMetaData({ metaData: updatedMetaData }));
   };
 
@@ -108,17 +105,7 @@ const BuildResume = () => {
     } else {
       updateMetaData(template.metaData);
     }
-    onSelectedSection("");
-  };
-
-  const onChange = (newMetaData) => {
-    updateMetaData(newMetaData);
-  };
-  const onDelete = (newMetaData) => {
-    updateMetaData(newMetaData);
-  };
-  const onSelectedSection = (section) => {
-    setSection(section);
+    dispatch(setActiveSection(""));
   };
 
   const onSaveResume = () => {
@@ -141,7 +128,7 @@ const BuildResume = () => {
     const resumeBlob = await htmlToBlob(node);
     const payload = new FormData();
     payload.append("image", resumeBlob, resume.name);
-    payload.append("data", JSON.stringify({ metaData: finalMetaData }));
+    payload.append("data", JSON.stringify({ metaData: metaData }));
     const response = await updateResume({ params: resume.id, payload });
     toggleLoader();
     if (response.status) {
@@ -183,7 +170,6 @@ const BuildResume = () => {
   };
 
   function onSelectFile(imageObj) {
-    console.log(imageObj);
     setUploadImageSrc({ ...imageObj });
   }
 
@@ -223,7 +209,6 @@ const BuildResume = () => {
 
   useEffect(() => {
     if (resumeData) {
-      updateMetaData(resumeData.metaData);
       dispatch(setResumeData({ resume: resumeData }));
     }
   }, [resumeData]);
@@ -351,39 +336,7 @@ const BuildResume = () => {
                 />
               </div>
             </div>
-            {section ? (
-              <div className="w-full relative shadow-[0_6px_15px_#00000029] rounded border-t border-solid border-[#f3f3f3]">
-                <div className="absolute right-0 top-0">
-                  <button
-                    onClick={() => onSelectedSection("")}
-                    className="bg-gray-200 hover:bg-gray-300 font-semibold m-1 p-1.5"
-                  >
-                    <TimesIcon />
-                  </button>
-                </div>
-                <TemplateForm
-                  section={section}
-                  formSchema={templateData.formSchema[section]}
-                  data={metaData[section]}
-                  onChange={onChange}
-                  onDelete={onDelete}
-                />
-                <div className="absolute bottom-2 flex justify-center items-center w-full bg-transparent">
-                  <button
-                    onClick={() => onSelectedSection("")}
-                    className="text-sm text-accent-800 bg-white hover:text-accent font-semibold m-1 px-3 py-2 border border-gray-200 rounded-md"
-                  >
-                    Discard
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className=" w-full h-96 p-8 flex justify-center items-center rounded border-2 border-dashed border-gray-300">
-                <h1 className="text-2xl font-semibold text-gray-400 text-center">
-                  Click edit button of any <br /> block in the template
-                </h1>
-              </div>
-            )}
+            <TemplateForm />
           </div>
           <div className="flex flex-col items-center justify-start max-w-[600px] w-full h-full mb-8">
             <div data-title="header" className="w-full mb-4">
@@ -443,12 +396,7 @@ const BuildResume = () => {
                   />
                 </div>
               ) : (
-                <Template
-                  json={templateData.template}
-                  data={metaData}
-                  onSelectedSection={onSelectedSection}
-                  onSelectFile={onSelectFile}
-                />
+                <Template onSelectFile={onSelectFile} />
               )}
             </div>
           </div>
