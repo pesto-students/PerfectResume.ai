@@ -2,35 +2,40 @@ import { useDrag } from "react-dnd";
 import PropTypes from "prop-types";
 import { propTypes } from "src/utils/props";
 
-const DraggableBox = ({ id, left, top, children }) => {
-  const [{ isDragging }, dragRef] = useDrag(() => ({
-    type: "box",
-    item: { id, left, top },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
+const Box = ({ id, data, children }) => {
+  const [{ isDragging }, drag, dragPreview] = useDrag(
+    () => ({
+      type: data.type,
+      item: { id, ...data },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
     }),
-  }));
-
-  if (isDragging) {
-    return <div ref={dragRef} />;
-  }
+    [id],
+  );
 
   return (
     <div
-      ref={dragRef}
-      style={{ position: "absolute", left, top }}
-      className="w-[20px] h-[30px] bg-orange-400"
+      ref={dragPreview}
+      style={{ opacity: isDragging ? 0.5 : 1 }}
+      className="absolute"
     >
-      {children}
+      <div
+        role="Handle"
+        ref={drag}
+        id={id}
+        className="w-[100px] h-[120px] p-4 bg-orange-400"
+      >
+        {children}
+      </div>
     </div>
   );
 };
 
-DraggableBox.propTypes = {
+Box.propTypes = {
   id: PropTypes.string,
-  left: PropTypes.number,
-  top: PropTypes.number,
+  data: PropTypes.object,
   children: propTypes["children?"],
 };
 
-export default DraggableBox;
+export default Box;
