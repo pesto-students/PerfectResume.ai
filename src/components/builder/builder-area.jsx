@@ -8,50 +8,95 @@ import "react-mosaic-component/react-mosaic-component.css";
 import DraggableBlock from "./blocks/primitive-block";
 import { useState } from "react";
 import { useDrop } from "react-dnd";
+import CustomWindow from "./blocks/custom-mosaic-window";
 
 const BuilderArea = () => {
-  const [, drop] = useDrop(() => ({
-    accept: "DRAGGABLE_BLOCK",
-    drop: (data) => {
-      console.log("targetPane: ");
-      onDrop(data);
-    },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging,
-    }),
-  }));
-  const [layout, setLayout] = useState(null);
-  const onDragEnd = (newLayout) => {
-    console.log("newLayout: ", newLayout);
+  // Initial layout with one window
+  // State for the layout and window count
+  const [layout, setLayout] = useState({
+    direction: "row",
+    first: "a",
+    second: "b",
+  });
+  const [windowCount, setWindowCount] = useState(1);
+  const [hasDropped, setHasDropped] = useState(false);
+  const [hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
+
+  const onLayoutChange = (newLayout) => {
     setLayout(newLayout);
   };
 
+  const [{ isOver, isOverCurrent }, drop] = useDrop(
+    () => ({
+      accept: "DRAGGABLE_BLOCK",
+      drop: (item, monitor) => {
+        const didDrop = monitor.didDrop();
+        console.log("didDrop: ", didDrop);
+        setHasDropped(true);
+        setHasDroppedOnChild(didDrop);
+        onDrop(item);
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+        isOverCurrent: monitor.isOver({ shallow: true }),
+        canDrop: !!monitor.canDrop(),
+      }),
+    }),
+    [layout, setHasDropped, setHasDroppedOnChild],
+  );
+
+  console.log("isOverCurrent: ", isOverCurrent);
+  console.log("isOver: ", isOver);
   const onDrop = ({ id, title }) => {
-    // Duplicate the dropped component with a unique identifier
-    const newComponent = { id, title };
-    console.log("onDrop: ", newComponent);
-    // Create a new node for the dropped component
-    // Create unique keys for the first and second elements
-    const firstKey = `first_${id}`;
-    const secondKey = `second_${id}`;
-    const newComponentNode = {
-      direction: "row",
-      first: (
-        <div key={firstKey} className="w-[200px] h-[200px] bg-red-600"></div>
-      ),
-      second: (
-        <div key={secondKey} className="w-[200px] h-[200px] bg-green-600"></div>
-      ),
-    };
-    // Check if mosaicUpdate.path is defined before using it
-    if (layout && Array.isArray(layout.path)) {
-      // Update the layout state with the new component node using updateTree
-      setLayout(updateTree(layout, layout.path, newComponentNode));
-    } else {
-      // If mosaicUpdate.path is undefined, set the layout as the newComponentNode
-      setLayout(newComponentNode);
-    }
+    addWindow();
   };
+
+  const addWindow = () => {
+    const newWindowId = `window${windowCount + 1}`;
+
+    const updateLayout = (currentLayout) => {
+      console.log("updateLayout: ", currentLayout); // output: "a"
+      // If the current layout is a string, it's a leaf node and can be split
+      if (typeof currentLayout === "string") {
+        return {
+          direction: "row",
+          first: currentLayout,
+          second: newWindowId,
+          splitPercentage: 50,
+        };
+      }
+
+      // If the current layout is an object, recursively update the last part (second)
+      return {
+        ...currentLayout,
+        second: updateLayout(currentLayout.second),
+      };
+    };
+
+    const newLayout = updateLayout(layout);
+    setLayout(newLayout);
+    setWindowCount(windowCount + 1);
+  };
+
+  const handleDragOverWindow = (event) => {
+    console.log("handleDragOverWindow: ", event);
+  };
+
+  const renderWindow = (id, path) => {
+    return (
+      <CustomWindow
+        path={path}
+        title={`Window ${id}`}
+        onDragOverWindow={handleDragOverWindow}
+      ></CustomWindow>
+    );
+  };
+
+  // const renderCustomWindow = (id, path) => {
+  //   return (
+  //     <div path={path} className="border-8 border-gray-300 border-solid"></div>
+  //   );
+  // };
 
   return (
     <div className="h-full bg-white overflow-auto p-4 py-8 flex justify-center">
@@ -64,16 +109,9 @@ const BuilderArea = () => {
         ref={drop}
       >
         <MosaicWithoutDragDropContext
-          renderTile={(id, path) => (
-            <div
-              id={id}
-              key={id}
-              path={path}
-              className="border-8 border-gray-300 border-solid"
-            ></div>
-          )}
-          initialValue={layout}
-          onChange={onDragEnd}
+          renderTile={renderWindow}
+          value={layout}
+          onChange={onLayoutChange}
           zeroStateView={<div>Drag and drop components here</div>}
         />
       </div>

@@ -4,6 +4,7 @@ import TreeView from "src/components/builder/tree-view";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import "src/styles/template-builder.css";
+import Builder from "src/components/builder/builder";
 
 const TemplateBuilderPage = () => {
   return (
@@ -12,7 +13,8 @@ const TemplateBuilderPage = () => {
         <div className="h-full w-full bg-gray-300 overflow-hiddden">
           <div className="builder-layout h-full bg-orange-200">
             <TreeView />
-            <BuilderArea />
+            {/* <BuilderArea /> */}
+            <Builder />
             <LayoutAssets />
           </div>
         </div>
