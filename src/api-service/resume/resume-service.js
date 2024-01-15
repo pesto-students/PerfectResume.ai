@@ -49,5 +49,21 @@ const generatePdf = async (props = {}) => {
   });
   return response;
 };
+const generateHtmlToPdf = async (props = {}) => {
+  const { payload, options } = props;
+  const response = await axiosService.getPDF({
+    endpoint: api.resume.generateHtmlToPdf,
+    payload,
+    options,
+  });
+  return response;
+};
 
-export { createResume, updateResume, getResume, getAllResumes, generatePdf };
+export {
+  createResume,
+  updateResume,
+  getResume,
+  getAllResumes,
+  generatePdf,
+  generateHtmlToPdf,
+};

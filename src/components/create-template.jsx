@@ -4,24 +4,14 @@ const CreateTemplate = () => {
       <div className="h-auto min-h-full p-5 flex flex-col">
         <div className="flex items-end">
           <div className="template-title-section flex-2 relative">
-            <div className="IGNORE_THIS_IN_PDF">
-              <div className="absolute right-0 bottom-0">
-                <button
-                  data-section="titleSection"
-                  className="resume-edit-btn w-5 h-5 outline outline-1 outline-white bg-primary text-white rounded-[4px] p-[2px]"
-                >
-                  <img src="/pencil.svg" alt="" />
-                </button>
-              </div>
-            </div>
-            <h1 className="text-3xl leading-none font-bold text-gray-900 uppercase">
+            <h1 className="text-4xl leading-none font-bold text-gray-900 uppercase whitespace-nowrap">
               sampath mannem
             </h1>
-            <h1 className="text-xl leading-none font-medium text-gray-700 uppercase mt-2">
+            <h1 className="text-2xl leading-none font-medium text-gray-700 uppercase mt-2">
               Software Engineer
             </h1>
             <div className="flex items-start mt-4">
-              <div className="w-[14px] h-[16px] mr-2 flex items-center justify-center text-gray-600">
+              <div className="w-4 h-4 mr-2 flex items-center justify-center text-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   data-name="Layer 1"
@@ -37,13 +27,15 @@ const CreateTemplate = () => {
               </div>
               <a
                 href="https://linkedin.com/in/sampath-mannem"
-                className="text-[12px] leading-4 text-gray-700 font-normal"
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm leading-4 text-gray-700 font-normal"
               >
                 linkedin.com/in/sampath88
               </a>
             </div>
             <div className="flex items-start mt-2">
-              <div className="w-[14px] h-[16px] mr-2 flex items-center justify-center text-gray-600">
+              <div className="w-4 h-4 mr-2 flex items-center justify-center text-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -58,25 +50,17 @@ const CreateTemplate = () => {
               </div>
               <a
                 href="https://github.com/sampath88"
-                className="text-[12px] leading-4 text-gray-700 font-normal"
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm leading-4 text-gray-700 font-normal"
               >
                 github.com/sampath88
               </a>
             </div>
           </div>
           <div className="template-contact-section ml-10 mr-4 relative flex-1">
-            <div className="IGNORE_THIS_IN_PDF">
-              <div className="absolute right-0 top-0">
-                <button
-                  data-section="contactInfo"
-                  className="resume-edit-btn w-5 h-5 outline outline-1 outline-white bg-primary text-white rounded-[4px] p-[2px]"
-                >
-                  <img src="/pencil.svg" alt="" />
-                </button>
-              </div>
-            </div>
             <div className="flex items-start">
-              <div className="w-[12px] h-[16px] mr-2 flex items-center justify-center text-gray-600">
+              <div className="w-4 h-4 mr-2 flex items-center justify-center text-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -91,14 +75,16 @@ const CreateTemplate = () => {
                 </svg>
               </div>
               <a
-                href="email:palmerstone@mail.com"
-                className="text-[11px] leading-4 text-gray-700"
+                href="email:sampathreddy8896@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm leading-4 text-gray-700"
               >
-                palmerston@mail.com
+                sampathreddy8896@gmail.com
               </a>
             </div>
             <div className="flex items-start mt-2">
-              <div className="w-[12px] h-[16px] mr-2 flex items-center justify-center text-gray-600">
+              <div className="w-4 h-4 mr-2 flex items-center justify-center text-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -112,10 +98,10 @@ const CreateTemplate = () => {
                   ></path>
                 </svg>
               </div>
-              <p className="text-[11px] leading-4 text-gray-700">123-456-789</p>
+              <p className="text-sm leading-4 text-gray-700">+91 7013755248</p>
             </div>
             <div className="flex items-start mt-2">
-              <div className="w-[12px] h-[16px] mr-2 flex items-center justify-center text-gray-600">
+              <div className="w-4 h-4 mr-2 flex items-center justify-center text-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -129,213 +115,497 @@ const CreateTemplate = () => {
                   ></path>
                 </svg>
               </div>
-              <p className="text-[11px] leading-4 text-gray-700">
-                3205 Eden Drive, Glen All Virginia
+              <p className="text-sm leading-4 text-gray-700">
+                Hyderabad, India
               </p>
             </div>
           </div>
         </div>
-        <div className="w-full mt-4 border border-solid border-gray-500"></div>
+        <div className="w-full mt-4 border border-solid border-gray-400"></div>
         <div className="h-full flex-1 flex flex-row">
           <div className="template-left-section w-3/5">
-            <div className="mt-6 mr-4">
+            <div className="mt-4 mr-4">
               <div className="template-project-section relative">
-                <div className="IGNORE_THIS_IN_PDF">
-                  <div className="absolute right-0 top-0">
-                    <button
-                      data-section="projects"
-                      className="resume-edit-btn w-5 h-5 outline outline-1 outline-white bg-primary text-white rounded-[4px] p-[2px]"
-                    >
-                      <img src="/pencil.svg" alt="" />
-                    </button>
-                  </div>
-                </div>
-                <h1 className="text-xs leading-none text-gray-700 uppercase font-bold mb-2">
+                <h1 className="text-sm leading-none text-gray-700 uppercase font-bold mb-2">
                   Projects
                 </h1>
                 <div>
                   <a
                     href="https://perfect-resume-gamma.vercel.app"
-                    className="text-base leading-none text-gray-800 font-bold mb-2"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-lg leading-none text-gray-800 font-bold mb-2"
                   >
                     PerfectResume.ai
                   </a>
                   <p className="text-xs font-medium text-gray-700 mb-2">
                     <a
                       href="https://perfect-resume-gamma.vercel.app"
-                      className="text-xs ml-0"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm ml-0"
                     >
                       https://perfect-resume-gamma.vercel.app
                     </a>
                   </p>
                   <div className="flex items-center flex-wrap mb-1">
-                    <p className="text-xs font-medium text-gray-800 mr-1">
+                    <p className="text-sm font-semibold text-gray-800 mr-1">
                       Technologies:
                     </p>
                     <div data-repeat="true" className="flex items-center">
-                      <p className="text-[12px] leading-4 text-gray-800">
-                        Python
-                      </p>
+                      <p className="text-sm leading-4 text-gray-800">ReactJs</p>
                       <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">NestJs</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">NodeJs</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">MongoDB</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">AWS S3</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">OpenAI</p>
                     </div>
                   </div>
 
-                  <p className="text-[11px] leading-4 text-[#6B7280]">
+                  <p className="text-sm leading-5 text-gray-600 mt-2">
                     PerfectResume.ai is a web application which will empowers
                     users to create, enhance, and review resumes using AI-driven
                     features.
                   </p>
-                  <div className="flex flex-row items-baseline mt-2">
+                  <div className="flex flex-row items-baseline mt-1">
                     <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
-                    <p className="text-[11px] leading-4 text-[#6B7280]">
+                    <p className="text-sm leading-5 text-gray-600 mt-1">
                       Offers tools for resume building with pre-generated ATS
                       friendly resume Template crafted by industry experts
                     </p>
                   </div>
-                  <div className="flex flex-row items-baseline mt-2">
+                  <div className="flex flex-row items-baseline mt-1">
                     <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
-                    <p className="text-[11px] leading-4 text-[#6B7280]">
+                    <p className="text-sm leading-5 text-gray-600 mt-1">
                       AI-generated content suggestions and enhancements which
                       will help effectively showcase work and project
                       descriptions, Customize content generation based on job
                       description
                     </p>
                   </div>
-                  <div className="flex flex-row items-baseline mt-2">
-                    <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
-                    <p className="text-[11px] leading-4 text-[#6B7280]">
-                      Platform to receive reviews and gather feedback from a
-                      diverse range of individuals
-                    </p>
-                  </div>
                 </div>
               </div>
-              <div className="template-workExperience-section mt-8 relative">
-                <div className="IGNORE_THIS_IN_PDF">
-                  <div className="absolute right-0 top-0">
-                    <button
-                      data-section="workExperience"
-                      className="resume-edit-btn w-5 h-5 outline outline-1 outline-white bg-primary text-white rounded-[4px] p-[2px]"
-                    >
-                      <img src="/pencil.svg" alt="" />
-                    </button>
-                  </div>
-                </div>
-                <h1 className="text-xs leading-none text-gray-700 uppercase font-bold mb-2">
+              <div className="template-workExperience-section mt-6 relative">
+                <h1 className="text-sm leading-none text-gray-700 uppercase font-bold mb-2">
                   WORK EXPERIENCE
                 </h1>
               </div>
+              <div className="mt-3">
+                <h1 className="text-xl leading-none text-gray-800  font-bold my-2">
+                  iCore Innovations Pvt Ltd
+                </h1>
+                <p className="text-sm text-gray-700 italic font-medium">
+                  March 2021 - Present
+                </p>
+              </div>
               <div
                 data-repeat="true"
-                className="template-workexperience-section mt-4"
+                className="template-workexperience-section mt-2"
               >
                 <a
                   href="https://cpaydev.icorei.com/subscription/"
-                  className="text-base leading-none text-gray-800 font-bold mb-2"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-lg leading-none text-gray-700 font-bold mb-2"
                 >
                   cSmartHr
                 </a>
                 <p className="text-xs font-medium text-gray-700 mb-2">
                   <a
                     href="https://cpaydev.icorei.com/subscription/"
-                    className="text-xs ml-0"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm ml-0"
                   >
                     https://cpaydev.icorei.com/subscription/
                   </a>
                 </p>
-                <p className="text-[11px] leading-4 text-[#6B7280] mt-2">
-                  Frontend Developer | Apr 2019 - Present
+                <p className="text-sm italic font-semibold leading-4 text-gray-800 mt-2">
+                  Frontend Developer
                 </p>
                 <div className="flex items-center flex-wrap my-1">
-                  <p className="text-xs font-medium text-gray-800 mr-1">
+                  <p className="text-sm font-semibold text-gray-800 mr-1">
                     Technologies:
                   </p>
                   <div data-repeat="true" className="flex items-center">
-                    <p className="text-[12px] leading-4 text-gray-800">
-                      Python
+                    <p className="text-sm leading-4 text-gray-800">jQuery</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">
+                      Javascript
                     </p>
                     <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">
+                      Handlebars
+                    </p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">HTML</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Bootstrap</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Sass</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">CSS</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">
+                      Spring Boot
+                    </p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Hibernate</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Mysql</p>
                   </div>
                 </div>
                 <div className="flex flex-row items-baseline mt-2">
                   <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
-                  <p className="text-[11px] leading-4 text-[#6B7280]">
-                    Utilized PySpark to distribute data processing on large
-                    streaming datasets to improve ingestion and processing speed
-                    of that daat by 87%
+                  <p className="text-sm leading-5 text-gray-600">
+                    Led the comprehensive redesign of the cSmartHr payroll
+                    management system, significantly enhancing user experience.
                   </p>
+                </div>
+                <div className="flex flex-row items-baseline mt-1">
+                  <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
+                  <p className="text-sm leading-5 text-gray-600">
+                    Developed an innovative in-house template system, allowing
+                    users to easily create and customize templates, adding
+                    flexibility and personalization to the payroll process.
+                  </p>
+                </div>
+                <div className="flex flex-row items-baseline mt-1">
+                  <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
+                  <p className="text-sm leading-5 text-gray-600">
+                    Implemented mobile-responsive design for most views,
+                    improving accessibility and user engagement.
+                  </p>
+                </div>
+              </div>
+              <div
+                data-repeat="true"
+                className="template-workexperience-section mt-4"
+              >
+                <a className="text-lg leading-none text-gray-700 font-bold mb-2">
+                  OTS (Online Teaching System)
+                </a>
+                <p className="text-sm italic font-semibold leading-4 text-gray-700 mt-1">
+                  Frontend Developer
+                </p>
+                <div className="flex items-center flex-wrap my-1">
+                  <p className="text-sm font-semibold text-gray-800 mr-1">
+                    Technologies:
+                  </p>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">AureliaJs</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">jQuery</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">
+                      Javascript
+                    </p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">HTML</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Bootstrap</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Sass</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">CSS</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">
+                      Spring Boot
+                    </p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Hibernate</p>
+                    <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                  </div>
+                  <div data-repeat="true" className="flex items-center">
+                    <p className="text-sm leading-4 text-gray-800">Mysql</p>
+                  </div>
                 </div>
                 <div className="flex flex-row items-baseline mt-2">
                   <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
-                  <p className="text-[11px] leading-4 text-[#6B7280]">
-                    Build basic ETL that ingested transactional and event data
-                    from a web app with 10,000 daily active users that saved
-                    over $85,000 annually in external vendor costs
+                  <p className="text-sm leading-5 text-gray-600">
+                    Led the front-end team in the development of the OTS online
+                    teaching system, focusing on enhancing the digital learning
+                    experience
                   </p>
                 </div>
-                <div className="flex flex-row items-baseline mt-2">
+                <div className="flex flex-row items-baseline mt-1">
                   <span className="p-0.5 mr-2 rounded-full bg-[#19010A]"></span>
-                  <p className="text-[11px] leading-4 text-[#6B7280]">
-                    Build basic ETL that ingested transactional and event data
-                    from a web app with 10,000 daily active users that saved
-                    over $85,000 annually in external vendor costs
+                  <p className="text-sm leading-5 text-gray-600">
+                    Played a pivotal role in implementing interactive features
+                    for scheduling live classes and mock interviews,
+                    facilitating efficient and engaging student-faculty
+                    interaction.
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="template-right-section w-2/5 border-l border-solid border-gray-800">
-            <div className="mt-6">
-              <div className="template-skill-section mx-4 mt-6 relative">
-                <div className="IGNORE_THIS_IN_PDF">
-                  <div className="absolute right-0 top-0">
-                    <button
-                      data-section="skills"
-                      className="resume-edit-btn w-5 h-5 outline outline-1 outline-white bg-primary text-white rounded-[4px] p-[2px]"
-                    >
-                      <img src="/pencil.svg" alt="" />
-                    </button>
-                  </div>
-                </div>
-                <h1 className="text-xs leading-none text-gray-700 uppercase font-bold mb-2">
+          <div className="template-right-section w-2/5 border-l border-solid border-gray-300">
+            <div className="mt-4">
+              <div className="template-skill-section mx-4  relative">
+                <h1 className="text-sm leading-none text-gray-700 uppercase font-bold mb-2">
                   Skills Summary
                 </h1>
                 <div className="mb-4">
-                  <h1 className="text-xs leading-none text-gray-600 uppercase font-bold mb-2">
+                  <h1 className="text-sm leading-none text-gray-700 uppercase font-bold mb-2">
                     Front-end Development
                   </h1>
-                  <div data-repeat="true" className="flex items-center">
+                  <div data-repeat="true" className="flex items-center mb-2">
                     <div className="mr-2 flex items-center justify-center">
-                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-600"></span>
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
                     </div>
-                    <p className="text-[11px] leading-4 text-gray-800">
-                      Python
-                    </p>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">ReactJs</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">
+                        AureliaJs
+                      </p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">Flutter</p>
+                    </div>
+                  </div>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800 whitespace-nowrap">
+                        Redux
+                      </p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">jQuery</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">
+                        Tailwind CSS
+                      </p>
+                    </div>
+                  </div>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">
+                        Javascript
+                      </p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">HTML</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">CSS</p>
+                    </div>
                   </div>
                 </div>
                 <div className="mb-4">
-                  <h1 className="text-xs leading-none text-gray-600 uppercase font-bold mb-2">
+                  <h1 className="text-sm leading-none text-gray-700 uppercase font-bold mb-2">
                     Back-end Development
                   </h1>
-                  <div data-repeat="true" className="flex items-center">
+                  <div data-repeat="true" className="flex items-center mb-2">
                     <div className="mr-2 flex items-center justify-center">
-                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-600"></span>
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
                     </div>
-                    <p className="text-[11px] leading-4 text-gray-800">
-                      Python
-                    </p>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">NestJs</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">NodeJs</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">Express</p>
+                    </div>
+                  </div>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">
+                        Socket.IO
+                      </p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">
+                        Websockets
+                      </p>
+                    </div>
+                  </div>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">
+                        REST API
+                      </p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">OpenAPI</p>
+                    </div>
+                  </div>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">NGINX</p>
+                      <span className="p-0.5 mx-1 rounded-full bg-gray-400"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">DOCKER</p>
+                    </div>
+                  </div>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">AWS S3</p>
+                    </div>
                   </div>
                 </div>
                 <div className="mb-4">
-                  <h1 className="text-xs leading-none text-gray-600 uppercase font-bold mb-2">
+                  <h1 className="text-sm leading-none text-gray-700 uppercase font-bold mb-2">
                     Databases
                   </h1>
-                  <div data-repeat="true" className="flex items-center">
+                  <div data-repeat="true" className="flex items-center mb-2">
                     <div className="mr-2 flex items-center justify-center">
-                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-600"></span>
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
                     </div>
-                    <p className="text-[11px] leading-4 text-gray-800">
-                      Python
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">MongoDB</p>
+                    </div>
+                  </div>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">Mysql</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <h1 className="text-sm leading-none text-gray-700 uppercase font-bold mb-2">
+                    Design Tools
+                  </h1>
+                  <div data-repeat="true" className="flex items-center mb-2">
+                    <div className="mr-2 flex items-center justify-center">
+                      <span className="rounded-full p-[3px] mr-[1px] bg-gray-500"></span>
+                    </div>
+                    <div data-repeat="true" className="flex items-center">
+                      <p className="text-sm leading-4 text-gray-800">Figma</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-solid border-gray-300"></div>
+            <div className="mt-6">
+              <div className="template-skill-section mx-4 mt-6 relative">
+                <h1 className="text-base leading-none text-gray-700 uppercase font-bold mb-2">
+                  Education
+                </h1>
+                <div className="mt-4">
+                  <h1 className="text-sm leading-none text-gray-700 uppercase font-bold">
+                    B.Tech <span className="font-medium ml-4">62%</span>
+                  </h1>
+                  <div>
+                    <p className="text-sm text-gray-700 font-normal mt-1">
+                      Vignana Bharathi Institute of Technology
+                    </p>
+                    <p className="text-sm text-gray-700 italic mt-1 font-medium">
+                      2014 - 2018
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <h1 className="text-sm leading-none text-gray-700 uppercase font-bold">
+                    Intermediate <span className="font-medium ml-4">92%</span>
+                  </h1>
+                  <div>
+                    <p className="text-sm text-gray-700 font-normal mt-1">
+                      Kavitha Jr. College
+                    </p>
+                    <p className="text-sm text-gray-700 italic mt-1 font-medium">
+                      2012 - 2014
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <h1 className="text-sm leading-none text-gray-700 uppercase font-bold">
+                    SSC <span className="font-medium ml-4">8.2 CGPA</span>
+                  </h1>
+                  <div>
+                    <p className="text-sm text-gray-700 font-normal mt-1">
+                      Pragathi Vidyalayam
+                    </p>
+                    <p className="text-sm text-gray-700 italic mt-1 font-medium">
+                      2011 - 2012
                     </p>
                   </div>
                 </div>
