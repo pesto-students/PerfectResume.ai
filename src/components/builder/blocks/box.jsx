@@ -18,7 +18,7 @@ const Box = ({ id, data, children }) => {
     <div
       ref={dragPreview}
       style={{ opacity: isDragging ? 0.5 : 1 }}
-      className="absolute"
+      className=""
     >
       <div
         role="Handle"
