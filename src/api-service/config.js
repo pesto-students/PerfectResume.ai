@@ -25,6 +25,7 @@ const api = {
     get: routeMap("/resumes"),
     getAll: routeMap("/resumes/user/all"),
     generatePdf: routeMap("/templates/generate-pdf"),
+    generateHtmlToPdf: routeMap("/templates/generate-html-pdf"),
   },
   upload: {
     s3: routeMap("/upload/s3"),

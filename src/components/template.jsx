@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveSection } from "src/store/editorSlice";
 import { createHTMLFromJSON } from "src/utils/template-parser";
 import { arrayFrom, isNodeList } from "src/utils/utils";
+import Skeleton from "react-loading-skeleton";
+import { useState } from "react";
 
 function createMarkup(template) {
   return {
@@ -9,12 +13,24 @@ function createMarkup(template) {
   };
 }
 
-const Template = ({ json, data, onSelectedSection, onSelectFile }) => {
+const Template = ({ onSelectFile }) => {
+  const { template: templateData, metaData } = useSelector(
+    (state) => state.builderState,
+  );
+  const [myTemplate, setMyTemplate] = useState(null);
+  const dispatch = useDispatch();
   let uploadListeners = [];
-  let myTemplate = createHTMLFromJSON(json, data);
+
+  useEffect(() => {
+    if (templateData.template && metaData) {
+      let myTemplate = createHTMLFromJSON(templateData.template, metaData);
+      setMyTemplate(myTemplate);
+    }
+  }, [templateData.template, metaData]);
+
   const handleSectionSelected = (event) => {
     const target = event.currentTarget;
-    onSelectedSection(target.dataset.section);
+    dispatch(setActiveSection({ activeSection: target.dataset.section }));
   };
   const fileSelectionHandler = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -81,19 +97,27 @@ const Template = ({ json, data, onSelectedSection, onSelectFile }) => {
       });
       console.log("✅ Event listener removed");
     };
-  }, [data]);
+  }, [myTemplate, metaData]);
   return (
-    <div
-      className="w-full h-full min-h-[842px] max-h-[890px] overflow-y-auto overflow-x-hidden custom-scrollbar"
-      dangerouslySetInnerHTML={createMarkup(myTemplate)}
-    ></div>
+    <>
+      {!(templateData.template && metaData && myTemplate) ? (
+        <div>
+          <Skeleton
+            className="w-[350px] lg:w-[400px] xl:w-[592px]"
+            height={840}
+          />
+        </div>
+      ) : (
+        <div
+          className="w-full h-full min-h-[842px] max-h-[890px] overflow-y-auto overflow-x-hidden custom-scrollbar"
+          dangerouslySetInnerHTML={createMarkup(myTemplate)}
+        ></div>
+      )}
+    </>
   );
 };
 
 Template.propTypes = {
-  json: PropTypes.object,
-  data: PropTypes.object,
-  onSelectedSection: PropTypes.func,
   onSelectFile: PropTypes.func,
 };
 
